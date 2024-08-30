@@ -5,6 +5,12 @@ require('dotenv').config();
 const port = 3001; // or any port of your choice
 const dbPassword = process.env.DB_PASSWORD;
 // Create MySQL connection
+// Add this middleware before your route handlers
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} from ${req.ip}`);
+    next();
+  });
+  
 const connection = mysql.createConnection({
   host: 'anime-hub.cfcauw2wi08x.us-west-2.rds.amazonaws.com',
   user: 'admin',
