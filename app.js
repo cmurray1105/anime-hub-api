@@ -1,4 +1,3 @@
-// server.js or app.js (Backend)
 const express = require('express');
 const mysql = require('mysql2');
 const app = express();
@@ -20,6 +19,11 @@ connection.connect((err) => {
     return;
   }
   console.log('Connected to the MySQL database.');
+});
+
+// Define health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
 });
 
 // Define API endpoint to get the data
